@@ -1,0 +1,15 @@
+{
+  "name": "knotzfiletransfers",
+  "version": "0.0.1",
+  "description": "Secure File Transfers",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Guru",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^26.0.0"
+  }
+}

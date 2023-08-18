@@ -1,0 +1,98 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+nav a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+/* Login Screen */
+#login {
+    #login-form {
+        width: 300px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+    }
+    
+    #login-form label,
+    #login-form input,
+    #login-form button {
+        display: block;
+        margin: 10px 0;
+    }
+    
+}
+
+/* Dashboard */
+#dashboard {
+    #transfers-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+    
+    #transfers-table th,
+    #transfers-table td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+    }
+    
+    #transfers-table th {
+        background-color: #f0f0f0;
+    }
+    
+}
+
+/* Transfer Details */
+#transfer-details {
+    #selected-transfer {
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin: 20px 0;
+        background-color: #f9f9f9;
+    }
+    
+    #selected-transfer h2 {
+        margin: 0 0 15px;
+    }
+    
+}
+
+/* Settings */
+#settings {
+    #settings-form {
+        width: 300px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+    }
+    
+    #settings-form label,
+    #settings-form input,
+    #settings-form button {
+        display: block;
+        margin: 10px 0;
+    }
+    
+}
