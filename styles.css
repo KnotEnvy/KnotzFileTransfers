@@ -77,6 +77,10 @@ main {
     }
     
 }
+.hidden {
+    display: none;
+}
+
 
 /* Settings */
 #settings {
