@@ -1,19 +1,58 @@
-// Function to display transfer details
-function displayTransferDetails(index) {
-    // Get the selected transfer from the static array
-    var selectedTransfer = transfers[index];
-
-    // Update the Transfer Details section with the selected transfer details
-    document.getElementById('file-name').innerText = selectedTransfer.fileName;
-    document.getElementById('file-size').innerText = selectedTransfer.size;
-    document.getElementById('file-progress').innerText = selectedTransfer.progress;
-    document.getElementById('file-status').innerText = selectedTransfer.status;
-
-    // Show the Transfer Details section
-    document.getElementById('transfer-details').style.display = 'block';
+if (typeof ipcRenderer === 'undefined') {
+    const { ipcRenderer } = require('electron');
 }
 
-// Example: Add a click event listener to the first row of the transfers table
-document.getElementById('transfers-table').getElementsByTagName('tbody')[0].rows[0].addEventListener('click', function() {
-    displayTransferDetails(0); // Display details for the first transfer
+// Fetching and displaying ongoing transfers
+function getOngoingTransfers() {
+    ipcRenderer.invoke('getOngoingTransfers').then((transfers) => {
+        const tableBody = document.getElementById('transfers-table').getElementsByTagName('tbody')[0];
+        
+        // Clear existing rows
+        tableBody.innerHTML = '';
+
+        // Add a row for each transfer
+        transfers.forEach(function (transfer) {
+            var row = tableBody.insertRow();
+            
+            row.insertCell(0).innerText = transfer.filename;
+            row.insertCell(1).innerText = transfer.size;
+            row.insertCell(2).innerText = transfer.progress;
+            row.insertCell(3).innerText = transfer.status;
+            row.insertCell(4).innerHTML = '<button>Accept</button> <button>Cancel</button>'; // Actions
+        });
+    }).catch(error => {
+        alert(error);
+    });
+}
+
+// Function to trigger a file picker and initiate a new file transfer
+function initiateTransfer() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.click();
+    
+    input.addEventListener('change', () => {
+        const file = input.files[0];
+        if (file) {
+            const transfer = {
+                fileName: file.name,
+                size: file.size,
+                progress: 0,
+                status: 'Initiated'
+            };
+            
+            ipcRenderer.invoke('insertTransfer', transfer).then((response) => {
+                alert(response);
+                getOngoingTransfers();
+            });
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Attach the initiateTransfer function to a button click event
+    document.getElementById('initiate-transfer').addEventListener('click', initiateTransfer);
 });
+
+// Fetch ongoing transfers when the page loads
+// getOngoingTransfers();

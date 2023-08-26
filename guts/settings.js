@@ -1,20 +1,17 @@
-// Function to save settings
-function saveSettings() {
-    // Retrieve user input
-    var saveLocation = document.getElementById('save-location').value;
-    var enableNotifications = document.getElementById('notifications').checked;
-
-    // Save settings (for demonstration, we'll log them to the console)
-    console.log('Save Location:', saveLocation);
-    console.log('Enable Notifications:', enableNotifications);
-
-    // You can save these settings to a file, local storage, or any preferred storage method
-
-    alert('Settings saved successfully!');
+if (typeof ipcRenderer === 'undefined') {
+    const { ipcRenderer } = require('electron');
 }
 
-// Add an event listener to the settings form
-document.getElementById('settings-form').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent default form submission
-    saveSettings();
-});
+
+function saveSettings(event) {
+    event.preventDefault();
+
+    const saveLocation = document.getElementById('save-location').value;
+    const enableNotifications = document.getElementById('notifications').checked ? 1 : 0;
+    
+    ipcRenderer.invoke('saveSettings', saveLocation, enableNotifications).then((response) => {
+        alert(response);
+    });
+}
+
+document.getElementById('settings-form').addEventListener('submit', saveSettings);

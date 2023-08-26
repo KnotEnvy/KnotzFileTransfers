@@ -10,7 +10,7 @@
     <!-- Header -->
     <header>
         <h1>KnotzTransfers</h1>
-        <nav>
+        <nav id="nav-links" class="hidden">
             <a href="#dashboard">Dashboard</a>
             <a href="#settings">Settings</a>
         </nav>
@@ -18,6 +18,18 @@
     
     <!-- Main Content -->
     <main>
+        <!-- Registration Screen -->
+        <section id="registration">
+            <form id="registration-form">
+                <label for="register-username">Username:</label>
+                <input type="text" id="register-username" name="register-username" required>
+                <br>
+                <label for="register-password">Password:</label>
+                <input type="password" id="register-password" name="register-password" required>
+                <br>
+                <button type="submit">Register</button>
+            </form>
+        </section>
         <!-- Login Screen -->
         <section id="login">
             <form id="login-form">
@@ -34,6 +46,7 @@
 
         <!-- Dashboard -->
         <section id="dashboard" class="hidden">
+            <button id="initiate-transfer">Initiate Transfer</button>
             <table id="transfers-table">
                 <thead>
                     <tr>
@@ -79,6 +92,7 @@
             
         </section>
     </main>
+    <script src="guts/registration.js"></script>
     <script src="guts/login.js"></script>
     <script src="guts/dashboard.js"></script>
     <script src="guts/transfer.js"></script>
