@@ -100,7 +100,14 @@ ipcMain.handle('getOngoingTransfers', async () => {
 });
 
 
-
-
 // Add other database functions as needed
 module.exports = db;
+
+const io = require('socket.io')(3000); // Initialize Socket.io server on port 3000
+
+io.on('connection', (socket) => {
+  console.log('New client connected');
+  
+  // Your additional logic for file transfer will go here
+});
+
